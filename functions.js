@@ -5,7 +5,11 @@
  * - logs "Hello <name>" if there is a name
  */
 function greet(name) {
-  // Your code here
+  if (name) {
+    console.log(`Hello ${name}`);
+  } else {
+    console.log("Hello");
+  }
 }
 
 /**
@@ -14,9 +18,11 @@ function greet(name) {
  * - returns true if it's odd, false otherwise
  */
 function isOdd(n) {
-  // Your code here
+  if (n % 2 === 0) {
+    return false;
+  } else return true;
 }
-
+console.log(isOdd(5));
 /**
  * oddsSmallerThan(n):
  * - receives a number n
@@ -29,7 +35,9 @@ function isOdd(n) {
  * Hint: you can solve this without writing any loops!
  */
 function oddsSmallerThan(n) {
-  // Your code here
+  if (n % 2 === 0) {
+    return n / 2;
+  } else return (n - 1) / 2;
 }
 
 /**
@@ -43,7 +51,9 @@ function oddsSmallerThan(n) {
  * squareOrDouble(9) -> 81
  */
 function squareOrDouble(n) {
-  // Your code here
+  if (n % 2 === 0) {
+    return n * 2;
+  } else return n * n;
 }
 
 /**
@@ -63,9 +73,27 @@ function squareOrDouble(n) {
  *    ageFromBirthDate("19971110") -> 20 (because the birthday hasn't passed yet)
  */
 function ageFromBirthDate(birthDate) {
-  const _MS_PER_YEAR = 1000 * 60 * 60 * 24 * 365;
+  let birthYear = birthDate.slice(0, 4);
+  let birthMonth = birthDate.slice(4, 6);
+  let birthDay = birthDate.slice(6, 8);
+  let today = new Date();
+  let day = today.getDate();
+  let month = today.getMonth();
+  let year = today.getFullYear();
 
-  // Your code here
+  if (birthYear == year) {
+    return 0;
+  } else if (birthMonth > month) {
+    return year - 1 - birthYear;
+  } else if (birthMonth < month) {
+    return year - birthYear;
+  } else if (birthMonth == month) {
+    if (birthDay > day) {
+      return year - 1 - birthYear;
+    } else if (birthDay <= day) {
+      return year - birthYear;
+    }
+  }
 }
 
 module.exports = {
